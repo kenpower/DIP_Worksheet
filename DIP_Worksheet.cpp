@@ -45,7 +45,7 @@ public:
 				
 				window.draw(shape);
 				window.display();
-				window.draw(shape); //paint on second buffer also to avoiud flicker
+				window.draw(shape); //paint on second buffer also to avoid flicker
 			}
 		}
     }
