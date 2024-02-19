@@ -19,17 +19,17 @@ The initial code snippet directly uses sf::CircleShape in the Game class to rend
 1. Define an abstract Shape interface with virtual methods for setting position and color, and for getting the shape to be drawn (sf::Drawble).
 2. Create a concrete class that implements this Shape interface, wrapping[^1] an sf::Shape (like sf::CircleShape).
 3. Modify the Game class to use the Shape abstraction instead of a concrete sf::CircleShape.
-5. if you are stuggling with these tasks, checkout the *Hints* secions at the end.
+5. If you are struggling with these tasks, checkout the *Hints* section at the end.
 
 ## Advanced Task (only attempt after previous tasks complete):
 
-1. Does you `Game` class call methods such as: `shape->setPosition(...)` and ` shape->setColor(...)`? If so, your abstraction maybe depends on details (color & position), violating the DIP. Ask your self "What does the game class *really* want?". It wants the shape to appear different each time. So maybe replae the setPositio & setColor methods with something like `changeAppearance()` and let the shape class figure out how that should be done.
+1. Does you `Game` class call methods such as: `shape->setPosition(...)` and ` shape->setColor(...)`? If so, your abstraction maybe depends on details (color & position), violating the DIP. Ask your self "What does the game class *really* want?". It wants the shape to appear different each time. So maybe replace the setPosition & setColor methods with something like `changeAppearance()` and let the shape class figure out how that should be done.
 
 2. Create a Square class that chages size and shape, make the `Game` class draw squares instead of circles **without changing any code in `Game`** 
 
-# Submisson
+# Submission
 
-Put all you code into `DIP_worksheet.cpp` and upload this file to the blackboard DIP assignment.
+Put all your code into `DIP_worksheet.cpp` and upload this file to the blackboard DIP assignment.
 
 
 ## Hints
@@ -42,7 +42,8 @@ Create a general blueprint for shapes in our game. This blueprint is called an i
 
 How to Do It:
 
-You will write a class named Shape but with only declarations of functions and no actual code inside them. These functions will be setPosition, setColor, and getDrawable (getDrawable should retunn a `sf::Drawable&`,  a reference to a `Drawable` object).
+You will write a class named Shape but with only declarations of functions and no actual code inside them. These functions will be setPosition, setColor, and getDrawable (getDrawable should return a `sf::Drawable&`,  a reference to a `Drawable` object).
+
 Mark these functions as virtual and = 0; to say, "Any shape that follows this blueprint must provide its own version of these functions."
 
 ### Task 2: Create a Concrete Class that Implements the Shape Interface
@@ -72,5 +73,5 @@ Update the game's code so whenever it needs to move the shape, change its color,
 Flexibility: Later, if you want to add a new shape, like a square, you just need to create a Square class that follows the Shape blueprint. You don't need to change the Game class.
 Maintainability: Your code is easier to update and maintain. Changes in how a shape behaves or is drawn only need to be made in one place.
 
-[^1]: 
-In programming, "wrapping" refers to the technique of encapsulating or embedding an object, function, or data within another object or class, often to provide a simplified, enhanced, or different interface to the underlying functionality. The wrapper class (RandomCircle, for example) implements a defined interface (Shape) and manages the underlying sf::Shape object. This way, the specific details of how shapes are managed and drawn are abstracted away from the rest of the application, allowing the Game class to operate on a higher level of abstraction without concerning itself with the specifics of SFML's drawing mechanisms.
+[^1]: In programming, "wrapping" refers to the technique of encapsulating or embedding an object, function, or data within another object or class, often to provide a simplified, enhanced, or different interface to the underlying functionality. The wrapper class (RandomCircle, for example) implements a defined interface (Shape) and manages the underlying sf::Shape object. 
+  This way, the specific details of how shapes are managed and drawn are abstracted away from the rest of the application, allowing the Game class to operate on a higher level of abstraction without concerning itself with the specifics of SFML's drawing mechanisms.
