@@ -10,14 +10,16 @@ The Dependency Inversion Principle is a software design guideline that suggests 
 
 ## Initial Code Analysis:
 
-The initial code snippet directly uses sf::CircleShape in the Game class to render a shape on the window. This design tightly couples the Game class to a specific shape type, limiting flexibility and violating DIP. `Game` class (High-level) depends on `CircleShape` (low-level).
+The initial code snippet directly uses sf::CircleShape in the Game class to render a shape on the window. This design tightly couples the Game class to a specific shape type, limiting flexibility and violating DIP. 
+
+`Game` class (High-level) depends on `CircleShape` (low-level). This violates DIP
 
 ## Tasks:
 
-1 .Define an abstract Shape interface with virtual methods for setting position and color, and for getting the shape to be drawn (sf::Drawble).
-2 .Create a concrete class that implements this Shape interface, wrapping an sf::Shape (like sf::CircleShape).
+1. Define an abstract Shape interface with virtual methods for setting position and color, and for getting the shape to be drawn (sf::Drawble).
+2. Create a concrete class that implements this Shape interface, wrapping[^1] an sf::Shape (like sf::CircleShape).
 3. Modify the Game class to use the Shape abstraction instead of a concrete sf::CircleShape.
-4. if you are stuggling with these tasks, checkout the *Hints* secions at the end.
+5. if you are stuggling with these tasks, checkout the *Hints* secions at the end.
 
 ## Advanced Task (only attempt after previous tasks complete):
 
@@ -54,7 +56,8 @@ How to Do It:
 Make a new class (let's call it Circle) that says it's going to use the Shape blueprint (`class Circle : public Shape`).
 Inside Circle, you will write the actual code for setPosition, setColor, and getDrawable functions. This code will specifically handle how a circle changes its position, color, and how it should be drawn.
 
-Task 3: Modify the Game Class to Use the Shape Abstraction
+### Task 3: Modify the Game Class to Use the Shape Abstraction
+
 What to Do:
 
 Change the Game class so it doesn't directly create and use a circle but instead talks to the Shape blueprint. This way, Game doesn't care what shape it's dealing with, making it easier to add new shapes later.
@@ -68,3 +71,6 @@ Update the game's code so whenever it needs to move the shape, change its color,
 
 Flexibility: Later, if you want to add a new shape, like a square, you just need to create a Square class that follows the Shape blueprint. You don't need to change the Game class.
 Maintainability: Your code is easier to update and maintain. Changes in how a shape behaves or is drawn only need to be made in one place.
+
+[^1]: 
+In programming, "wrapping" refers to the technique of encapsulating or embedding an object, function, or data within another object or class, often to provide a simplified, enhanced, or different interface to the underlying functionality. The wrapper class (RandomCircle, for example) implements a defined interface (Shape) and manages the underlying sf::Shape object. This way, the specific details of how shapes are managed and drawn are abstracted away from the rest of the application, allowing the Game class to operate on a higher level of abstraction without concerning itself with the specifics of SFML's drawing mechanisms.
