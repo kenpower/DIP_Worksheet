@@ -62,6 +62,7 @@ Inside Circle, you will write the actual code for setPosition, setColor, and get
 What to Do:
 
 Change the Game class so it doesn't directly create and use a circle but instead talks to the Shape blueprint. This way, Game doesn't care what shape it's dealing with, making it easier to add new shapes later.
+**Game class should not have any reference to any concrete shape classes.**
 
 How to Do It:
 
