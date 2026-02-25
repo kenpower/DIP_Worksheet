@@ -29,7 +29,7 @@ public:
 		{
 			sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Application");
 			window.setFramerateLimit(25);
-			sf::CircleShape shape(100.f);
+			sf::CircleShape shape(100.f); // TODO: DIP Violation - Game (high-level) depends directly on sf::CircleShape (low-level)
 			shape.setFillColor(sf::Color::Green);
 			while (window.isOpen())
 			{
@@ -43,9 +43,9 @@ public:
 				shape.setPosition(rand() % screenWidth, rand() % screenHeight);
 				shape.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 				
+				window.clear();
 				window.draw(shape);
 				window.display();
-				window.draw(shape); //paint on second buffer also to avoid flicker
 			}
 		}
     }
